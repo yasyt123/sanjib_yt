@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanjib Mainali - Aspiring Software Developer</title>
+    <title>Sanjib Mainali - Aspiring Data Scientist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Global Styles */
@@ -326,21 +326,21 @@
             color: var(--text-light);
         }
         
-        /* Interests Section */
-        .interests {
+        /* Goals Section */
+        .goals {
             padding: 100px 0;
             background-color: var(--dark-bg);
             position: relative;
         }
         
-        .interests-grid {
+        .goals-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
         
-        .interest-card {
+        .goal-card {
             background-color: var(--card-bg);
             padding: 30px;
             border-radius: 5px;
@@ -351,25 +351,75 @@
             transform: translateY(50px);
         }
         
-        .interest-card:nth-child(1) { animation: fadeInUp 0.8s forwards 0.2s; }
-        .interest-card:nth-child(2) { animation: fadeInUp 0.8s forwards 0.4s; }
-        .interest-card:nth-child(3) { animation: fadeInUp 0.8s forwards 0.6s; }
+        .goal-card:nth-child(1) { animation: fadeInUp 0.8s forwards 0.2s; }
+        .goal-card:nth-child(2) { animation: fadeInUp 0.8s forwards 0.4s; }
+        .goal-card:nth-child(3) { animation: fadeInUp 0.8s forwards 0.6s; }
         
-        .interest-card:hover {
+        .goal-card:hover {
             transform: translateY(-10px) !important;
             box-shadow: 0 15px 30px rgba(255, 45, 45, 0.2);
             border-top: 2px solid var(--red-accent);
         }
         
-        .interest-icon {
+        .goal-icon {
             font-size: 40px;
             color: var(--red-accent);
             margin-bottom: 20px;
             transition: transform 0.3s;
         }
         
-        .interest-card:hover .interest-icon {
+        .goal-card:hover .goal-icon {
             transform: scale(1.2);
+        }
+        
+        /* 3D Eye Section */
+        .eye-section {
+            position: fixed;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            perspective: 1000px;
+        }
+        
+        .eye-3d {
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, var(--red-accent) 0%, var(--red-dark) 50%, #800000 100%);
+            border-radius: 50%;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(255, 45, 45, 0.5);
+            transform-style: preserve-3d;
+        }
+        
+        .eye-3d::before {
+            content: '';
+            position: absolute;
+            width: 75px;
+            height: 75px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .eye-3d::after {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 35px;
+            background-color: white;
+            border-radius: 50%;
+            top: 35%;
+            left: 35%;
+            animation: eyeMove 5s infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateX(0) rotateY(0); }
+            50% { transform: translateY(-20px) rotateX(10deg) rotateY(10deg); }
         }
         
         /* Footer */
@@ -513,6 +563,24 @@
             pointer-events: none;
         }
         
+        /* Fog Effect */
+        .fog {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle at center, transparent 0%, var(--darker-bg) 70%);
+            pointer-events: none;
+            z-index: 1;
+            animation: fogMove 20s linear infinite;
+        }
+        
+        @keyframes fogMove {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+        
         /* Modal for Success Stories */
         .modal {
             display: none;
@@ -565,60 +633,6 @@
             color: var(--red-accent);
         }
         
-        .story {
-            margin-top: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #333;
-        }
-        
-        .story:last-child {
-            border-bottom: none;
-        }
-        
-        .story h3 {
-            color: var(--text-light);
-            margin-bottom: 15px;
-            font-size: 22px;
-        }
-        
-        .story h3 span {
-            color: var(--red-accent);
-        }
-        
-        .story img {
-            float: left;
-            margin-right: 20px;
-            margin-bottom: 10px;
-            width: 150px;
-            border-radius: 5px;
-            border: 2px solid var(--red-accent);
-        }
-        
-        .story p {
-            color: var(--text-gray);
-            margin-bottom: 10px;
-        }
-        
-        /* Contact Modal */
-        .contact-form input,
-        .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            background-color: #2a2a2a;
-            border: 1px solid #333;
-            border-radius: 5px;
-            color: var(--text-light);
-            transition: all 0.3s;
-        }
-        
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: var(--red-accent);
-            box-shadow: 0 0 10px rgba(255, 45, 45, 0.2);
-        }
-        
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
@@ -647,16 +661,18 @@
                 margin-bottom: 30px;
             }
             
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 20px;
+            .eye-section {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                margin: 30px auto;
+                text-align: center;
             }
             
-            .story img {
-                float: none;
-                display: block;
-                margin: 0 auto 20px;
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
             }
         }
     </style>
@@ -664,6 +680,14 @@
 <body>
     <!-- Floating Particles -->
     <div class="particles" id="particles"></div>
+    
+    <!-- Fog Effect -->
+    <div class="fog"></div>
+    
+    <!-- 3D Eye -->
+    <div class="eye-section">
+        <div class="eye-3d"></div>
+    </div>
     
     <!-- Header -->
     <header id="main-header">
@@ -676,7 +700,7 @@
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#interests">Interests</a></li>
+                    <li><a href="#goals">Goals</a></li>
                     <li><a href="#" id="stories-btn">Success Stories</a></li>
                 </ul>
             </nav>
@@ -688,7 +712,7 @@
         <div class="container">
             <img src="https://via.placeholder.com/150" alt="Sanjib Mainali" class="profile-pic">
             <h1>Sanjib Mainali</h1>
-            <p>Aspiring Software Developer | Coding Enthusiast | Lifelong Learner</p>
+            <p>Aspiring Data Scientist | Computer Science Student | Python Enthusiast</p>
             <a href="#about" class="btn">Learn More About Me</a>
         </div>
     </section>
@@ -700,38 +724,39 @@
             <div class="about-content">
                 <div class="about-text">
                     <h3>Hello, I'm Sanjib!</h3>
-                    <p>I'm a passionate student with a deep love for technology and programming. My journey in the world of coding began when I first discovered the magic of creating something from nothing but lines of code.</p>
-                    <p>What excites me most about software development is the endless potential for creativity and problem-solving. Every day presents new challenges and opportunities to learn and grow.</p>
-                    <p>My ultimate goal is to become a skilled software developer who can build meaningful applications that make a positive impact on people's lives.</p>
+                    <p>I'm a passionate student from Kavre, Nepal, currently studying Computer Science at Reliance College in Chabhil, Saraswotinagar, Kathmandu. I recently completed my Grade 10 education.</p>
+                    <p>Born on 2066/11/03 BS (February 15, 2010 AD), I come from a Brahmin family that values both tradition and education. My journey in technology began when I discovered programming and its potential to solve problems.</p>
+                    <p>I'm deeply interested in coding and currently learning Python, with aspirations to become a professional Data Scientist in the future.</p>
                     
                     <div class="education">
                         <h4>Education</h4>
-                        <p>Currently studying at Reliance Intel College in Chabhil, Saraswotinagar, Nepal</p>
+                        <p><strong>School:</strong> Completed Grade 10</p>
+                        <p><strong>College:</strong> Currently studying Computer Science at Reliance College, Chabhil, Saraswotinagar, Kathmandu</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Interests Section -->
-    <section class="interests" id="interests">
+    <!-- Goals Section -->
+    <section class="goals" id="goals">
         <div class="container">
-            <h2 class="section-title">My Interests & Goals</h2>
-            <div class="interests-grid">
-                <div class="interest-card">
-                    <div class="interest-icon"><i class="fas fa-code"></i></div>
-                    <h3>Coding</h3>
-                    <p>I love writing code and solving problems through programming. The process of turning ideas into functional software fascinates me.</p>
+            <h2 class="section-title">My Future Goals</h2>
+            <div class="goals-grid">
+                <div class="goal-card">
+                    <div class="goal-icon"><i class="fas fa-database"></i></div>
+                    <h3>Become a Data Scientist</h3>
+                    <p>My ultimate career goal is to become a skilled Data Scientist, working with large datasets to extract meaningful insights and solve complex problems.</p>
                 </div>
-                <div class="interest-card">
-                    <div class="interest-icon"><i class="fas fa-book-open"></i></div>
-                    <h3>Learning</h3>
-                    <p>I'm a lifelong learner, always eager to acquire new skills and knowledge in technology and beyond.</p>
+                <div class="goal-card">
+                    <div class="goal-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Master Programming</h3>
+                    <p>I'm currently learning Python and plan to expand my knowledge to other programming languages and technologies in the computer science field.</p>
                 </div>
-                <div class="interest-card">
-                    <div class="interest-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Future Goals</h3>
-                    <p>My ambition is to become a professional software developer, contributing to innovative projects and technological advancements.</p>
+                <div class="goal-card">
+                    <div class="goal-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Higher Education</h3>
+                    <p>After completing my college education, I aim to pursue higher studies in Computer Science or Data Science to deepen my knowledge and skills.</p>
                 </div>
             </div>
         </div>
@@ -743,12 +768,14 @@
             <div class="social-links">
                 <a href="#"><i class="fab fa-github"></i></a>
                 <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="footer-links">
                 <a href="#about">About</a>
-                <a href="#" id="contact-btn">Contact</a>
+                <a href="mailto:sanjiv5@gmail.com">Email: sanjiv5@gmail.com</a>
+                <a href="tel:9823066137">Phone: 9823066137</a>
+                <a href="#" id="contact-btn">Contact Form</a>
             </div>
             <p class="copyright">&copy; 2023 Sanjib Mainali. All rights reserved.</p>
         </div>
@@ -950,3 +977,14 @@
                 }
             });
         });
+
+        // 3D Eye animation
+        const eye3d = document.querySelector('.eye-3d');
+        document.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            eye3d.style.transform = `translateY(-50%) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+    </script>
+</body>
+</html>
